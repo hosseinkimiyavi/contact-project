@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import ContactList from "./ContactList";
 
 export default function Form() {
+  const [contacts,setcontacts]=useState([])
+  const [alert,setalert]= useState("")
   const [contact,setcontact] = useState({
     name:"",lastname:"",email:"",phone:""
    })
@@ -16,7 +19,20 @@ export default function Form() {
    }
    const subHandler = (event)=>{
     event.preventDefault();
-    console.log(contact);
+    if (!contact.name || !contact.lastname || !contact.email || !contact.phone){
+      setalert("please enter valid data!")
+
+      return
+    }
+    setalert("");
+
+
+    setcontacts(contacts =>[...contacts,contact]);
+    console.log(contacts);
+    setcontact({
+      name:"",lastname:"",email:"",phone:""
+     });
+   
    }
 
 
@@ -34,6 +50,8 @@ export default function Form() {
 
         <button className="w-full h-8 border bg-blue-900 rounded-2xl  m-auto text-white mx-72 hover:bg-blue-800 " onClick={subHandler}>Add Contact</button>
       </form> 
+      <div>{setalert && <p>{alert}</p> }</div>
+      <ContactList contacts={contacts} />
     </>
   );
 }

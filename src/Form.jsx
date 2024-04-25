@@ -13,6 +13,10 @@ export default function Form() {
     email: "",
     phone: "",
   });
+  const deleteHandler = (id)=>{
+  const Newcontacts =contacts.filter(contacts=>contacts.id!==id)
+  setcontacts(Newcontacts)
+  }
 
   const changeHandler = (event) => {
     const name = event.target.name;
@@ -97,7 +101,7 @@ export default function Form() {
         </button>
       </form>
       <div>{setalert && <p>{alert}</p>}</div>
-      <ContactList contacts={contacts} />
+      <ContactList contacts={contacts} deleteHandler={deleteHandler} />
     </>
   );
 }

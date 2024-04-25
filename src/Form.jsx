@@ -100,7 +100,7 @@ export default function Form() {
           Add Contact
         </button>
       </form>
-      <div>{setalert && <p>{alert}</p>}</div>
+      <div>{setalert && <p className=" w-1/5 rounded-xl m-6 text-center mx-auto font-bold">{alert}</p>}</div>
       <ContactList contacts={contacts} deleteHandler={deleteHandler} />
     </>
   );
